@@ -1,7 +1,6 @@
 from pyramid.view import view_config
 
 from karmaid.karma import get_karma, inc_karma, dec_karma
-from karmaid.resources import KarmaResource
 
 
 @view_config(route_name='top', renderer='top.mako')
