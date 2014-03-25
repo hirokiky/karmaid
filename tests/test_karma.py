@@ -17,7 +17,7 @@ class TestGetKarma(unittest.TestCase):
 
     def test__karma_existed(self):
         from karmaid.redisio import get_redis
-        get_redis().set('RitsuTainaka', 3)
+        get_redis().set('karma__RitsuTainaka', 3)
         actual = self._callFUT('RitsuTainaka')
         self.assertEqual(3, actual)
 
