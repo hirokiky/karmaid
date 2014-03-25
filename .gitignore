@@ -1,0 +1,12 @@
+*.pyc
+*.egg-info
+*.egg
+*.sw?
+*.rdb
+.coverage
+dist
+_build
+build
+.idea
+htmlcov/
+.tox/
