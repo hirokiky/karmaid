@@ -1,6 +1,7 @@
 from pyramid.config import Configurator
 
 from karmaid.redisio import init_redis
+from karmaid.resources import KarmaResource
 
 
 def main(global_config, **settings):
@@ -11,7 +12,7 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('top', '/')
-    config.add_route('api_karma', '/api/karma')
+    config.add_route('api_karma', '/api/karma', factory=KarmaResource)
     config.scan('.views')
 
     return config.make_wsgi_app()
