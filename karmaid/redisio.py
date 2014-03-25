@@ -3,6 +3,7 @@ _client = None
 
 
 def init_redis(settings, prefix='redis.'):
+    from importlib import import_module
     import redis
     options = dict((key[len(prefix):], settings[key])
                    for key in settings
@@ -17,7 +18,8 @@ def init_redis(settings, prefix='redis.'):
             socket_timeout=float(options['timeout']) if options['timeout'] else None,
         )
     global _client
-    _client = redis.Redis
+    module, attr = options['client'].rsplit('.', 1)
+    _client = getattr(import_module(module), attr)
 
 
 def init_fake_redis():
