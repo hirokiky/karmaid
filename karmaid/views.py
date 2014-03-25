@@ -1,3 +1,4 @@
+from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 
 from karmaid.karma import get_karma, inc_karma, dec_karma
@@ -32,3 +33,8 @@ def api_dec(request):
     karma = dec_karma(resource)
     return {'resource': resource,
             'karma': karma}
+
+
+@view_config(route_name='api_karma', request_method='POST')
+def api_invalid_post(request):
+    raise HTTPBadRequest
