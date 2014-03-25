@@ -11,11 +11,11 @@ def init_redis(settings, prefix='redis.'):
     global _pool
     if _pool is None:
         _pool = redis.ConnectionPool(
-            host=options['host'],
-            port=int(options['port']),
-            db=int(options['db']),
-            password=options['password'] or None,
-            socket_timeout=float(options['timeout']) if options['timeout'] else None,
+            host=options.get('host', '127.0.0.1'),
+            port=int(options.get('port', 6379)),
+            db=int(options.get('db', 0)),
+            password=options.get('password') or None,
+            socket_timeout=float(options['timeout']) if options.get('timeout') else None,
         )
     global _client
     module, attr = options['client'].rsplit('.', 1)
