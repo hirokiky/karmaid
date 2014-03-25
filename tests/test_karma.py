@@ -24,3 +24,43 @@ class TestGetKarma(unittest.TestCase):
     def test__no_karma(self):
         actual = self._callFUT('RitsuTainaka')
         self.assertEqual(0, actual)
+
+
+class TestIncKarma(unittest.TestCase):
+    def _callFUT(self, *args, **kwargs):
+        from karmaid.karma import inc_karma
+        return inc_karma(*args, **kwargs)
+
+    def tearDown(self):
+        from karmaid.redisio import get_redis
+        get_redis().flushall()
+
+    def test__karma_existed(self):
+        from karmaid.redisio import get_redis
+        get_redis().set('karma__RitsuTainaka', 3)
+        actual = self._callFUT('RitsuTainaka')
+        self.assertEqual(4, actual)
+
+    def test__no_karma(self):
+        actual = self._callFUT('RitsuTainaka')
+        self.assertEqual(1, actual)
+
+
+class TestDecKarma(unittest.TestCase):
+    def _callFUT(self, *args, **kwargs):
+        from karmaid.karma import dec_karma
+        return dec_karma(*args, **kwargs)
+
+    def tearDown(self):
+        from karmaid.redisio import get_redis
+        get_redis().flushall()
+
+    def test__karma_existed(self):
+        from karmaid.redisio import get_redis
+        get_redis().set('karma__RitsuTainaka', 3)
+        actual = self._callFUT('RitsuTainaka')
+        self.assertEqual(2, actual)
+
+    def test__no_karma(self):
+        actual = self._callFUT('RitsuTainaka')
+        self.assertEqual(-1, actual)
