@@ -8,7 +8,7 @@ def top(request):
     return {}
 
 
-@view_config(route_name='api', request_method='GET', renderer='json')
+@view_config(route_name='api_karma', request_method='GET', renderer='json')
 def api_karma(request):
     resource = request.GET.get('resource')
     karma = get_karma(resource)
@@ -16,7 +16,7 @@ def api_karma(request):
             'karma': karma}
 
 
-@view_config(route_name='api', request_method='POST', request_param='action=inc',
+@view_config(route_name='api_karma', request_method='POST', request_param='action=inc',
              renderer='json')
 def api_inc(request):
     resource = request.POST.get('resource')
@@ -25,7 +25,7 @@ def api_inc(request):
             'karma': karma}
 
 
-@view_config(route_name='api', request_method='POST', request_param='action=dec',
+@view_config(route_name='api_karma', request_method='POST', request_param='action=dec',
              renderer='json')
 def api_dec(request):
     resource = request.POST.get('resource')
