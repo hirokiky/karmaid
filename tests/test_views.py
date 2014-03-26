@@ -12,6 +12,36 @@ def _createRequest(resource):
         return request
 
 
+class TestIPLimitation(unittest.TestCase):
+    def _makeOne(self, *args, **kwargs):
+        from karmaid.views import ip_limitation
+        return ip_limitation(*args, **kwargs)
+
+    def setUp(self):
+        testing.setUp(settings={'iplimitation.max_count': '300',
+                                'iplimitation.expire_time': '3600'})
+
+    @mock.patch('karmaid.views.count_ip', autospec=True, return_value=False)
+    def test__reached_the_limit(self, m):
+        from karmaid.views import APIAccessReachedLimitation
+        target = self._makeOne(lambda: None)
+        request = testing.DummyRequest()
+        request.remote_addr = 'dummy ipaddr'
+        self.assertRaises(APIAccessReachedLimitation, target, 'dummy context', request)
+        m.assert_called_with('dummy ipaddr', 300, 3600)
+
+    @mock.patch('karmaid.views.count_ip', autospec=True, return_value=True)
+    def test__under_the_limit(self, m):
+        wrapped_view = mock.Mock(spec=['__call__'], return_value='dummy response')
+        target = self._makeOne(wrapped_view)
+        request = testing.DummyRequest()
+        request.remote_addr = 'dummy ipaddr'
+        actual = target('dummy context', request)
+        self.assertEqual('dummy response', actual)
+        m.assert_called_with('dummy ipaddr', 300, 3600)
+        wrapped_view.assert_called_with('dummy context', request)
+
+
 class TestTop(unittest.TestCase):
     def _callFUT(self, *args, **kwargs):
         from karmaid.views import top
@@ -67,6 +97,16 @@ class TestAPIBadRequest(unittest.TestCase):
 
     def test__it(self):
         self.assertEqual({'status': 400, 'message': 'BadRequest'},
+                         self._callFUT(testing.DummyRequest()))
+
+
+class TestAPIReachedLimitation(unittest.TestCase):
+    def _callFUT(self, *args, **kwargs):
+        from karmaid.views import api_reached_limitation
+        return api_reached_limitation(*args, **kwargs)
+
+    def test__it(self):
+        self.assertEqual({'status': 403, 'message': 'APIAccessReachedLimitation'},
                          self._callFUT(testing.DummyRequest()))
 
 
