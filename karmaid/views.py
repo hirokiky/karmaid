@@ -1,7 +1,7 @@
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config, notfound_view_config
 
-from karmaid.karma import get_karma, inc_karma, dec_karma
+from karmaid.karma import get_karma, inc_karma, dec_karma, get_best_resources, get_worst_resources
 
 
 @view_config(route_name='top', renderer='top.mako')
@@ -41,3 +41,15 @@ def api_bad_request(request):
     request.response.status_int = 400
     return {'status': 400,
             'message': 'BadRequest'}
+
+
+@view_config(route_name='api_ranking', renderer='json', request_param='desc')
+def api_worst(request):
+    return {'ranking': 'worst',
+            'resources': get_worst_resources()}
+
+
+@view_config(route_name='api_ranking', renderer='json')
+def api_best(request):
+    return {'ranking': 'best',
+            'resources': get_best_resources()}

@@ -68,3 +68,27 @@ class TestAPIBadRequest(unittest.TestCase):
     def test__it(self):
         self.assertEqual({'status': 400, 'message': 'BadRequest'},
                          self._callFUT(testing.DummyRequest()))
+
+
+@mock.patch('karmaid.views.get_worst_resources', autospec=True, return_value=['worst', 'best'])
+class TestAPIWorst(unittest.TestCase):
+    def _callFUT(self, *args, **kwargs):
+        from karmaid.views import api_worst
+        return api_worst(*args, **kwargs)
+
+    def test__it(self, m):
+        actual = self._callFUT('dummyrequest')
+        self.assertEqual({'ranking': 'worst', 'resources': ['worst', 'best']},
+                         actual)
+
+
+@mock.patch('karmaid.views.get_best_resources', autospec=True, return_value=['best', 'worst'])
+class TestAPIBest(unittest.TestCase):
+    def _callFUT(self, *args, **kwargs):
+        from karmaid.views import api_best
+        return api_best(*args, **kwargs)
+
+    def test__it(self, m):
+        actual = self._callFUT('dummyrequest')
+        self.assertEqual({'ranking': 'best', 'resources': ['best', 'worst']},
+                         actual)
