@@ -10,11 +10,11 @@ def get_karma(resource):
 
 
 def inc_karma(resource):
-    return get_redis().zincrby(KARMA_KEY_NAME, resource)
+    return int(get_redis().zincrby(KARMA_KEY_NAME, resource))
 
 
 def dec_karma(resource):
-    return get_redis().zincrby(KARMA_KEY_NAME, resource, amount=-1)
+    return int(get_redis().zincrby(KARMA_KEY_NAME, resource, amount=-1))
 
 
 def get_best_resources():
