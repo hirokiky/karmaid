@@ -4,7 +4,7 @@ from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config, notfound_view_config
 
 from karmaid.iplimitation import count_ip
-from karmaid.karma import get_karma, inc_karma, dec_karma, get_best_resources, get_worst_resources
+from karmaid.karma import get_karma, inc_karma, dec_karma, get_best_stuffs, get_worst_stuffs
 
 
 class APIAccessReachedLimitation(Exception):
@@ -29,34 +29,34 @@ def top(request):
 
 @view_config(route_name='button', renderer='button1.mako')
 def button(request):
-    resource = request.context.resource
-    return {'resource': resource,
-            'resource_url': request.route_url('top', _query={'resource': resource})}
+    stuff = request.context.stuff
+    return {'stuff': stuff,
+            'stuff_url': request.route_url('top', _query={'stuff': stuff})}
 
 
 @view_config(route_name='api_karma', request_method='GET', renderer='json')
 def api_karma(request):
-    resource = request.context.resource
-    karma = get_karma(resource)
-    return {'resource': resource,
+    stuff = request.context.stuff
+    karma = get_karma(stuff)
+    return {'stuff': stuff,
             'karma': karma}
 
 
 @view_config(route_name='api_karma', request_method='POST', request_param='action=inc',
              renderer='json', decorator='karmaid.views.ip_limitation')
 def api_inc(request):
-    resource = request.context.resource
-    karma = inc_karma(resource)
-    return {'resource': resource,
+    stuff = request.context.stuff
+    karma = inc_karma(stuff)
+    return {'stuff': stuff,
             'karma': karma}
 
 
 @view_config(route_name='api_karma', request_method='POST', request_param='action=dec',
              renderer='json', decorator='karmaid.views.ip_limitation')
 def api_dec(request):
-    resource = request.context.resource
-    karma = dec_karma(resource)
-    return {'resource': resource,
+    stuff = request.context.stuff
+    karma = dec_karma(stuff)
+    return {'stuff': stuff,
             'karma': karma}
 
 
@@ -78,10 +78,10 @@ def api_reached_limitation(request):
 @view_config(route_name='api_ranking', renderer='json', request_param='desc')
 def api_worst(request):
     return {'ranking': 'worst',
-            'resources': get_worst_resources()}
+            'stuffs': get_worst_stuffs()}
 
 
 @view_config(route_name='api_ranking', renderer='json')
 def api_best(request):
     return {'ranking': 'best',
-            'resources': get_best_resources()}
+            'stuffs': get_best_stuffs()}

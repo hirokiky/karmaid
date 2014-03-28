@@ -3,8 +3,8 @@ import unittest
 
 class TestValidateResource(unittest.TestCase):
     def _callFUT(self, *args, **kwargs):
-        from karmaid.validators import validate_resource
-        return validate_resource(*args, **kwargs)
+        from karmaid.validators import validate_stuff
+        return validate_stuff(*args, **kwargs)
 
     def test__not_str(self):
         self.assertFalse(self._callFUT(100))

@@ -1,15 +1,15 @@
 from pyramid.httpexceptions import HTTPBadRequest
 
-from karmaid.validators import validate_resource
+from karmaid.validators import validate_stuff
 
 
-class KarmaResource(object):
+class StuffResource(object):
     def __init__(self, request):
         self.request = request
 
     @property
-    def resource(self):
-        resource = self.request.params.get('resource')
-        if not validate_resource(resource):
+    def stuff(self):
+        stuff = self.request.params.get('stuff')
+        if not validate_stuff(stuff):
             raise HTTPBadRequest
-        return resource
+        return stuff

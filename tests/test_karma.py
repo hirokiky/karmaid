@@ -59,12 +59,12 @@ class TestDecKarma(_RedisTestCase):
         self.assertEqual(-1, actual)
 
 
-class TestGetBestResources(_RedisTestCase):
+class TestGetBestStuffs(_RedisTestCase):
     def _callFUT(self):
-        from karmaid.karma import get_best_resources
-        return get_best_resources()
+        from karmaid.karma import get_best_stuffs
+        return get_best_stuffs()
 
-    def test__not_enough_resources(self):
+    def test__not_enough_stuffs(self):
         redis = get_redis()
         redis.zadd(KARMA_KEY_NAME, 10000, 'cureblack')
         redis.zadd(KARMA_KEY_NAME, 9999, 'curesunny')
@@ -72,7 +72,7 @@ class TestGetBestResources(_RedisTestCase):
         actual = self._callFUT()
         self.assertEqual(['cureblack', 'curesunny', 'curemarine'], actual)
 
-    def test__enough_resources(self):
+    def test__enough_stuffs(self):
         redis = get_redis()
         redis.zadd(KARMA_KEY_NAME, 6, 'ritsu')
         redis.zadd(KARMA_KEY_NAME, 5, 'jun')
@@ -91,12 +91,12 @@ class TestGetBestResources(_RedisTestCase):
                           'mio'], actual)
 
 
-class TestGetWorstResources(_RedisTestCase):
+class TestGetWorstStuffs(_RedisTestCase):
     def _callFUT(self):
-        from karmaid.karma import get_worst_resources
-        return get_worst_resources()
+        from karmaid.karma import get_worst_stuffs
+        return get_worst_stuffs()
 
-    def test__not_enough_resources(self):
+    def test__not_enough_stuffs(self):
         redis = get_redis()
         redis.zadd(KARMA_KEY_NAME, 10000, 'darkprettycure')
         redis.zadd(KARMA_KEY_NAME, 9999, 'regine')
@@ -104,7 +104,7 @@ class TestGetWorstResources(_RedisTestCase):
         actual = self._callFUT()
         self.assertEqual(['akao-ni', 'regine', 'darkprettycure'], actual)
 
-    def test__enough_resources(self):
+    def test__enough_stuffs(self):
         redis = get_redis()
         redis.zadd(KARMA_KEY_NAME, 100, 'beer')
         redis.zadd(KARMA_KEY_NAME, 99, 'sake')

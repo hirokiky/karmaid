@@ -29,24 +29,24 @@ class TestAPIKarma(unittest.TestCase):
     def test__it(self, d):
         app = create_app(d)
 
-        res = app.get('/api/karma', params={'resource': 'Ritsu'})
-        self.assertEqual({'karma': 0, 'resource': 'Ritsu'}, res.json)
+        res = app.get('/api/karma', params={'stuff': 'Ritsu'})
+        self.assertEqual({'karma': 0, 'stuff': 'Ritsu'}, res.json)
 
-        res = app.post('/api/karma', params={'resource': 'Ritsu', 'action': 'inc'})
-        self.assertEqual({'karma': 1, 'resource': 'Ritsu'}, res.json)
+        res = app.post('/api/karma', params={'stuff': 'Ritsu', 'action': 'inc'})
+        self.assertEqual({'karma': 1, 'stuff': 'Ritsu'}, res.json)
 
-        res = app.post('/api/karma', params={'resource': 'Ritsu', 'action': 'dec'})
-        self.assertEqual({'karma': 0, 'resource': 'Ritsu'}, res.json)
+        res = app.post('/api/karma', params={'stuff': 'Ritsu', 'action': 'dec'})
+        self.assertEqual({'karma': 0, 'stuff': 'Ritsu'}, res.json)
 
     @tempdir()
     def test__spam(self, d):
         app = create_app(d)
 
         for i in range(10):
-            res = app.post('/api/karma', params={'resource': 'Ritsu', 'action': 'inc'})
-            self.assertEqual({'karma': i+1, 'resource': 'Ritsu'}, res.json)
+            res = app.post('/api/karma', params={'stuff': 'Ritsu', 'action': 'inc'})
+            self.assertEqual({'karma': i+1, 'stuff': 'Ritsu'}, res.json)
 
-        res = app.post('/api/karma', params={'resource': 'Ritsu', 'action': 'inc'},
+        res = app.post('/api/karma', params={'stuff': 'Ritsu', 'action': 'inc'},
                        expect_errors=True)
         self.assertEqual(403, res.status_int)
         self.assertEqual({'status': 403, 'message': 'APIAccessReachedLimitation'}, res.json)

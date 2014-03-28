@@ -1,10 +1,10 @@
 import re
 
-RESOURCE_REGEXP = re.compile('^[!-~]{1,5000}$', re.IGNORECASE)
+STUFF_REGEXP = re.compile('^[!-~]{1,5000}$', re.IGNORECASE)
 
 
-def validate_resource(resource):
+def validate_stuff(stuff):
     try:
-        return bool(RESOURCE_REGEXP.match(resource))
+        return bool(STUFF_REGEXP.match(stuff))
     except TypeError:
         return False
