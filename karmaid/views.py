@@ -89,3 +89,9 @@ def api_worst(request):
 def api_best(request):
     return {'ranking': 'best',
             'stuffs': get_best_stuffs()}
+
+
+@view_config(route_name='js_widget', renderer='widget.js.mako')
+def js_widget(request):
+    request.response.content_type = 'application/javascript'
+    return {'host': request.registry.settings['karmaid.host']}

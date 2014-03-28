@@ -15,6 +15,7 @@ def main(global_config, **settings):
     config.add_route('button', '/button/1/', factory=StuffResource)
     config.add_route('api_karma', '/api/karma', factory=StuffResource)
     config.add_route('api_ranking', '/api/ranking')
+    config.add_route('js_widget', 'widget.js', factory=StuffResource)
     config.scan('.views')
 
     return config.make_wsgi_app()
