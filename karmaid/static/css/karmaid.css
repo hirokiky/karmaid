@@ -13,7 +13,7 @@
 }
 
 .stuff {
-    padding: 2px 3px 0 3px;
+    padding: 2px 0 0 3px;
     margin-left: 5px;
     float: left;
 }
@@ -31,7 +31,7 @@
 }
 
 .action.inc {
-    margin-left: 2px;
+    margin-left: 5px;
     color: #5a954f;
 }
 
