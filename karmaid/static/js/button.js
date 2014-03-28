@@ -1,5 +1,18 @@
+function humanize_num(karma){
+    var digits = karma.toString().length
+    if (digits < 4){
+        return karma.toString();
+    } else if (digits >= 4 && digits < 7){
+        return (Math.round(karma / 100) / 10).toString() + 'k'
+    } else if (digits >= 7 && digits < 10){
+        return (Math.round(karma / 100000) / 10).toString() + 'm'
+    } else {
+        return (Math.round(karma / 100000000) / 10).toString() + 'g'
+    }
+}
+
 function set_karma (karma){
-    $('.karma-value').text(karma);
+    $('.karma-value').text(humanize_num(karma));
 }
 
 function error_karma (){
