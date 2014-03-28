@@ -61,6 +61,11 @@
 .karma a {
     font: small verdana,arial,helvetica,sans-serif;
     color: #696969;
+    text-decoration: none;
+}
+
+.karma a:hover {
+    text-decoration: underline;
 }
 
 .karma:before {
