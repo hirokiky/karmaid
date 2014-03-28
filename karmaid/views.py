@@ -27,7 +27,7 @@ def top(request):
     return {}
 
 
-@view_config(route_name='button', renderer='button.mako')
+@view_config(route_name='button', renderer='button1.mako')
 def button(request):
     return {}
 
