@@ -27,6 +27,11 @@ def top(request):
     return {}
 
 
+@view_config(route_name='button', renderer='button.mako')
+def button(request):
+    return {}
+
+
 @view_config(route_name='api_karma', request_method='GET', renderer='json')
 def api_karma(request):
     resource = request.context.resource
