@@ -1,3 +1,11 @@
+function set_karma (karma){
+    $('.karma-value').text(karma);
+}
+
+function error_karma (){
+    $('.karma-value').text('Error');
+}
+
 function ajax_action (api_url, stuff, action){
     $.ajax({
         type: "POST",
@@ -5,8 +13,8 @@ function ajax_action (api_url, stuff, action){
         data: {stuff: stuff,
                action: action}
     }).done(function (msg){
-        $('.karma-value').text(msg['karma']);
-    });
+        set_karma(msg['karma']);
+    }).error(error_karma);
 }
 $(function(){
     var api_url = $('#api-url').attr('value');
@@ -17,8 +25,9 @@ $(function(){
         url: api_url,
         data: {stuff: stuff}
     }).done(function (msg){
-        $('.karma-value').text(msg['karma']);
-    });
+        set_karma(msg['karma']);
+    }).error(error_karma);
+
     $('.inc').click(function (){
         ajax_action(api_url, stuff, 'inc');
     });
