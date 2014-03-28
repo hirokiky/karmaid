@@ -6,6 +6,11 @@ function error_karma (){
     $('.karma-value').text('Error');
 }
 
+function flush_karma (some_action){
+    var flush_speed = 200;
+    $('.karma-value').fadeOut(flush_speed, some_action).fadeIn(flush_speed);
+}
+
 function ajax_action (api_url, stuff, action){
     $.ajax({
         type: "POST",
@@ -29,9 +34,9 @@ $(function(){
     }).error(error_karma);
 
     $('.inc').click(function (){
-        ajax_action(api_url, stuff, 'inc');
+        flush_karma(function (){ajax_action(api_url, stuff, 'inc')});
     });
     $('.dec').click(function (){
-        ajax_action(api_url, stuff, 'dec');
+        flush_karma(function (){ajax_action(api_url, stuff, 'dec')});
     });
 });
