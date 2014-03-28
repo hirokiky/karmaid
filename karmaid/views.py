@@ -1,10 +1,11 @@
 from functools import wraps
 
-from pyramid.httpexceptions import HTTPBadRequest
+from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config, notfound_view_config
 
 from karmaid.iplimitation import count_ip
 from karmaid.karma import get_karma, inc_karma, dec_karma, get_best_stuffs, get_worst_stuffs
+from karmaid.stuffs import InvalidStuff
 
 
 class APIAccessReachedLimitation(Exception):
@@ -29,7 +30,10 @@ def top(request):
 
 @view_config(route_name='button', renderer='button1.mako')
 def button(request):
-    stuff = request.context.stuff
+    try:
+        stuff = request.context.stuff
+    except InvalidStuff:
+        raise HTTPNotFound
     return {'stuff': stuff,
             'stuff_url': request.route_url('top', _query={'stuff': stuff})}
 
@@ -61,7 +65,7 @@ def api_dec(request):
 
 
 @notfound_view_config(route_name='api_karma', request_method='POST', renderer='json')
-@view_config(route_name='api_karma', context=HTTPBadRequest, renderer='json')
+@view_config(route_name='api_karma', context=InvalidStuff, renderer='json')
 def api_bad_request(request):
     request.response.status_int = 400
     return {'status': 400,

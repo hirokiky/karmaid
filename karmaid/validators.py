@@ -1,6 +1,4 @@
-import re
-
-STUFF_REGEXP = re.compile('^[!-~]{1,5000}$', re.IGNORECASE)
+from karmaid.stuffs import STUFF_REGEXP
 
 
 def validate_stuff(stuff):

@@ -11,8 +11,8 @@ class TestKarmaResource(unittest.TestCase):
     def test__invalid_resource(self):
         request = testing.DummyRequest(params={})
         target = self._makeOne(request)
-        from pyramid.httpexceptions import HTTPBadRequest
-        with self.assertRaises(HTTPBadRequest):
+        from karmaid.stuffs import InvalidStuff
+        with self.assertRaises(InvalidStuff):
             target.stuff
 
     def test__valid_resource(self):

@@ -1,5 +1,4 @@
-from pyramid.httpexceptions import HTTPBadRequest
-
+from karmaid.stuffs import InvalidStuff
 from karmaid.validators import validate_stuff
 
 
@@ -11,5 +10,5 @@ class StuffResource(object):
     def stuff(self):
         stuff = self.request.params.get('stuff')
         if not validate_stuff(stuff):
-            raise HTTPBadRequest
+            raise InvalidStuff
         return stuff
