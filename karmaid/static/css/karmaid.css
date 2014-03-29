@@ -15,7 +15,7 @@ body {
     padding-top: 10px;
     height: 50px;
     background-color: rgb(255, 255, 255);
-    border-bottom: solid 1px #9b4929;
+    border-bottom: solid 1px rgba(240, 113, 63, 0.69);
 }
 
 .nav .brand a {
@@ -203,7 +203,7 @@ footer {
     padding-top: 18px;
     height: 100px;
     background-color: rgba(255, 119, 66, 0.31);
-    border-top: solid 1px #9b4929;
+    border-top: solid 1px rgba(240, 113, 63, 0.69);
     margin: 0;
     font-size: 12px;
     color: #333333;
