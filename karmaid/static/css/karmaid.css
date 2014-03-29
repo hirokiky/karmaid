@@ -31,7 +31,7 @@ body {
     height: 320px;
     width: 100%;
     min-width: 960px;
-    background-color: rgba(255, 119, 66, 0.46);
+    background-color: rgba(255, 119, 66, 0.31);
     padding-top: 80px;
     color: #ffffff;
 }
@@ -147,7 +147,6 @@ h1 {
 .ranking ul li {
     max-width: 400px;
     text-overflow: ellipsis;
-    white-spce: nowrap;
     overflow: hidden;
 }
 
@@ -161,7 +160,6 @@ ul.best {
 ul.worst {
     text-align: left;
     color: #E06A3B;
-    text-align: left;
     float: left;
     margin-left: 30px;
 }
@@ -204,7 +202,7 @@ footer {
     min-width: 960px;
     padding-top: 18px;
     height: 100px;
-    background-color: rgba(255, 119, 66, 0.46);
+    background-color: rgba(255, 119, 66, 0.31);
     border-top: solid 1px #9b4929;
     margin: 0;
     font-size: 12px;
