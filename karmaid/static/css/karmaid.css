@@ -4,14 +4,14 @@ body {
 
 .container {
     text-align: left;
-    width: 960px;
+    width: 860px;
     margin: 0 auto;
     padding: 0;
 }
 
 .nav {
     width: 100%;
-    min-width: 960px;
+    min-width: 860px;
     padding-top: 10px;
     height: 50px;
     background-color: rgb(255, 255, 255);
@@ -30,14 +30,13 @@ body {
     margin: 0;
     height: 320px;
     width: 100%;
-    min-width: 960px;
+    min-width: 860px;
     background-color: rgba(255, 119, 66, 0.31);
     padding-top: 80px;
     color: #ffffff;
 }
 
 .hero-text {
-    padding-left: 80px;
     text-shadow: 0 3px 2px #5d2e18;
     float: left;
 }
@@ -102,7 +101,7 @@ body {
 
 
 .ranking {
-    min-width: 960px;
+    min-width: 860px;
     height: 520px;
     padding-top: 54px;
     padding-bottom: 80px;
@@ -199,7 +198,7 @@ ul.worst {
 }
 
 footer {
-    min-width: 960px;
+    min-width: 860px;
     padding-top: 18px;
     height: 100px;
     background-color: rgba(255, 119, 66, 0.31);
