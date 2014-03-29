@@ -82,7 +82,7 @@
     left:-3px;
     content:"";
     display:block;
-    top:3px;
+    top:5px;
     position:absolute;
     width:0;
     z-index:1;
@@ -95,7 +95,7 @@
     left:-5px;
     content:"";
     display:block;
-    top:3px;
+    top:5px;
     position:absolute;
     width:0;
 }
