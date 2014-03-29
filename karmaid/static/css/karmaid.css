@@ -132,7 +132,7 @@ body {
 .ranking {
     min-width: 860px;
     height: 580px;
-    padding-top: 40px;
+    padding-top: 20px;
     padding-bottom: 80px;
     background-color: #f9f9f9;
 }
@@ -212,7 +212,7 @@ ul.worst {
 
 .buttongenerator {
     color: #333;
-    padding-top: 40px;
+    padding-top: 20px;
     background-color: #FFFFFF;
     height: 520px;
     clear: both;
