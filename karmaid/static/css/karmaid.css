@@ -1,32 +1,88 @@
-.button-body {
+body {
     margin: 0;
 }
 
-.wrapper {
-    float: none;
+.container {
+    text-align: left;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
 }
 
-.button {
-    background: -moz-linear-gradient(center top, #FFF, #DEDEDE);
-    border: solid 1px #CCCCCC;
-    border-radius: 4px;
+.nav {
+    width: 100%;
+    min-width: 960px;
+    padding-top: 10px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: solid 1px #9b4929;
+}
+
+.nav .brand a {
+    font-family: sans-serif;
+    font-size: 30px;
     color: #808080;
-    font: small monospace;
-    height: 19px;
+    text-shadow: 0 1px 0.05em #333333;
+    text-decoration: none;
+}
+
+.hero {
+    margin: 0;
+    height: 320px;
+    width: 100%;
+    min-width: 960px;
+    background-color: rgba(255, 119, 66, 0.46);
+    padding-top: 80px;
+    color: #ffffff;
+}
+
+.hero-text {
+    text-shadow: 0 3px 2px #5d2e18;
     float: left;
 }
 
-.stuff {
-    padding: 2px 0 0 3px;
-    margin-left: 5px;
-    float: left;
+.karma {
+    margin-bottom: 30px;
+}
+
+.karma-value {
+    font-size: 85px;
+}
+
+.karma-suffix {
+    padding-left: 10px;
+    font-size: 40px;
+    vertical-align: sub;
+}
+
+.subheading {
+    font-size: 25px;
+    clear: both;
+}
+
+.hero-input {
+    margin-left: 520px;
+}
+
+.stuff-input {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    height: 50px;
+    width: 300px;
+    font-size: 28px;
+    color: #5d5d5d;
 }
 
 .action {
-    margin: 3px 2px 2px 1px;
-    float: left;
-    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.1);
-    font-weight: bold;
+    width: 120px;
+    height: 50px;
+    color: #FFFFFF;
+    font-family: monospace;
+    font-size: 30px;
+    border: solid 2px #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(127, 127, 127, 0.5);
+    text-shadow: 1px 1px #808080;
 }
 
 .action:hover {
@@ -34,67 +90,126 @@
 }
 
 .action.inc {
-    margin-left: 5px;
-    color: #5a954f;
-}
-
-.action.inc:hover {
-    text-shadow: 0 1px 0 #a6d58a;
+    background-image: linear-gradient(#22e28d, #1BA466);
+    margin-right: 20px;
 }
 
 .action.dec {
-    margin-right: 5px;
-    color: #ff2e6c;
+    background-image: linear-gradient(#f69b86, #E06A3B);
+    margin-right: 20px;
 }
 
-.action.dec:hover {
-    text-shadow: 0 1px 0 #ff4e7b;
+
+.ranking {
+    min-width: 960px;
+    height: 520px;
+    padding-top: 54px;
+    padding-bottom: 80px;
+    background-color: #f9f9f9;
 }
 
-.karma {
+h1 {
     text-align: center;
-    min-width: 20px;
-    max-width: 40px;
-    position: relative;
-    padding: 2px 3px 0 3px;
-    height: 17px;
-    border: solid 1px #979797;
-    border-radius: 3px;
+    font-size: 42px;
+    color: #333;
+}
+
+.ranking h1 .best-font {
+    color: #1BA466;
+    font-style: italic;
+}
+
+.ranking h1 .worst-font {
+    color: #E06A3B;
+    font-style: italic;
+}
+
+.ranking p {
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+}
+
+.ranks {
+    min-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ranking ul {
+    list-style: none;
+    font-size: 24px;
+    padding-left: 0;
+    line-height: 1.5;
+}
+
+.ranking ul li {
+    max-width: 400px;
+    text-overflow: ellipsis;
+    white-spce: nowrap;
+    overflow: hidden;
+}
+
+ul.best {
+    color: #1BA466;
+    text-align: right;
     float: left;
-    margin-left: 7px;
+    margin-right: 30px;
 }
 
-.karma a {
-    font: small verdana,arial,helvetica,sans-serif;
-    color: #696969;
-    text-decoration: none;
+ul.worst {
+    text-align: left;
+    color: #E06A3B;
+    text-align: left;
+    float: left;
+    margin-left: 30px;
 }
 
-.karma a:hover {
-    text-decoration: underline;
+.buttongenerator {
+    color: #333;
+    padding-top: 80px;
+    background-color: #FFFFFF;
+    height: 520px;
+    clear: both;
 }
 
-.karma:before {
-    border:5px solid transparent;
-    border-right-color:#fff;
-    border-left-width:0;
-    left:-4px;
-    content:"";
-    display:block;
-    top:3px;
-    position:absolute;
-    width:0;
-    z-index:1;
+.generator {
+    width: 680px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.karma:after {
-    border: 5px solid transparent;
-    border-right-color:#979797;
-    border-left-width:0;
-    left:-6px;
-    content:"";
-    display:block;
-    top:3px;
-    position:absolute;
-    width:0;
+.buttongenerator h1 {
+    margin-bottom: 84px;
+}
+
+.generator-input {
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin-right: 60px;
+}
+
+.generator-result textarea {
+    overflow: hidden;
+}
+
+.sample-widget {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+footer {
+    min-width: 960px;
+    padding-top: 18px;
+    height: 100px;
+    background-color: rgba(255, 119, 66, 0.46);
+    border-top: solid 1px #9b4929;
+    margin: 0;
+    font-size: 12px;
+    color: #333333;
+}
+
+footer p {
+    text-align: center;
 }

@@ -25,7 +25,7 @@ def ip_limitation(view_callable):
 
 @view_config(route_name='top', renderer='top.mako')
 def top(request):
-    return {}
+    return {'host': request.registry.settings['karmaid.host']}
 
 
 @view_config(route_name='button', renderer='button1.mako')
