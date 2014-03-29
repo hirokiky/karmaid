@@ -71,7 +71,7 @@ function refresh_ranking(target, request_param){
         data: request_param
     }).done(function (msg){
         var bests = msg['stuffs'];
-        target.val('');
+        target.empty();
         for (var i = 0; i < bests.length; i++){
             var ele = $('<li />').text(bests[i]);
             target.append(ele);
@@ -115,5 +115,12 @@ $(function (){
     });
     $('.generator-result textarea').focus(function (){
         $(this).select();
+    });
+    $('.ranking-refresh').click(function (){
+        var flush_speed = 200;
+        $('.ranks').fadeOut(flush_speed, function(){
+            refresh_ranking($('.best'), {});
+            refresh_ranking($('.worst'), {desc: ''});
+        }).fadeIn(flush_speed);
     })
 });

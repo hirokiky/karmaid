@@ -1,3 +1,8 @@
+.clearboth {
+    clear: both;
+}
+
+
 body {
     margin: 0;
 }
@@ -85,7 +90,7 @@ body {
     color: #FFFFFF;
     font-family: monospace;
     font-size: 30px;
-    border: solid 2px #f4f4f4;
+    border: solid 2px #ffffff;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(127, 127, 127, 0.5);
     text-shadow: 1px 1px #808080;
@@ -108,8 +113,8 @@ body {
 
 .ranking {
     min-width: 860px;
-    height: 520px;
-    padding-top: 54px;
+    height: 580px;
+    padding-top: 40px;
     padding-bottom: 80px;
     background-color: #f9f9f9;
 }
@@ -118,6 +123,24 @@ h1 {
     text-align: center;
     font-size: 42px;
     color: #333;
+}
+
+.ranking .ranking-refresh {
+    clear: both;
+    float: none;
+    background-image: linear-gradient(#f9f9f9, #e7e7e7);
+    border-radius: 3px;
+    border: solid 1px #d6d6d6;
+    box-shadow: 1px 1px 1px #808080;
+    width: 120px;
+    height: 40px;
+    color: #333333;
+    font-size: 14px;
+    text-shadow: 0 1px #f6f6f6;
+}
+
+.ranking .ranking-refresh:hover {
+    cursor: pointer;
 }
 
 .ranking h1 .best-font {
@@ -171,7 +194,7 @@ ul.worst {
 
 .buttongenerator {
     color: #333;
-    padding-top: 80px;
+    padding-top: 40px;
     background-color: #FFFFFF;
     height: 520px;
     clear: both;

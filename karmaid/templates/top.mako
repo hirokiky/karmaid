@@ -50,6 +50,8 @@
                 <ul class="worst">
                 </ul>
             </div>
+            <div class="clearboth"></div>
+            <p><button class="ranking-refresh">refresh</button></p>
         </div>
     </div>
     <a name="buttongenerator"></a>
