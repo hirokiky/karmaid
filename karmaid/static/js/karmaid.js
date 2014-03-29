@@ -1,5 +1,16 @@
 var karma_manually_updated = false;
 
+function init_stuff_input (){
+    var query = window.location.search.substring(1);
+    var pos = query.indexOf('=');
+
+    var stuff = 'karmaid';
+    if (query.substring(0, pos) == 'stuff') {
+        stuff = query.substring(pos+1)
+    }
+    $('.stuff-input').val(stuff);
+}
+
 function flush_karma (some_action){
     var flush_speed = 200;
     $('.value').fadeOut(flush_speed, some_action).fadeIn(flush_speed);
@@ -91,6 +102,7 @@ function create_widget_script(stuff){
 
 $(function (){
     var api_url = get_karma_api_url();
+    init_stuff_input();
     refresh_karma();
     refresh_ranking($('.best'), {});
     refresh_ranking($('.worst'), {desc: ''});
