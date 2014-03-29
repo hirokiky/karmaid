@@ -24,6 +24,12 @@ body {
     color: #808080;
     text-shadow: 0 1px #333333;
     text-decoration: none;
+    float: left;
+}
+
+.karmawidget {
+    margin-top: 10px;
+    float: right;
 }
 
 .hero {

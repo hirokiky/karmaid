@@ -14,6 +14,10 @@
 <div class="nav">
     <div class="container">
         <div class="brand"><a href="${request.route_url('top')}">Karmaid</a></div>
+        <div class="karmawidget">
+            <script>var karmaid_stuff='karmaid';</script>
+            <script src="${host}/widget.js" type="text/javascript"></script>
+        </div>
     </div>
 </div>
 <div class="hero">
