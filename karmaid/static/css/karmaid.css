@@ -207,11 +207,21 @@ ul.best {
     margin-right: 30px;
 }
 
+ul.best a {
+    color: #1BA466;
+    text-decoration: none;
+}
+
 ul.worst {
-    text-align: left;
     color: #E06A3B;
+    text-align: left;
     float: left;
     margin-left: 30px;
+}
+
+ul.worst a {
+    color: #E06A3B;
+    text-decoration: none;
 }
 
 .buttongenerator {

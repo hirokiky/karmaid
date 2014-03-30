@@ -84,7 +84,8 @@ function refresh_ranking(target, request_param){
         var bests = msg['stuffs'];
         target.empty();
         for (var i = 0; i < bests.length; i++){
-            var ele = $('<li />').text(bests[i]);
+            var a_ele = $('<a />').attr({href: '?stuff=' + bests[i]}).text(bests[i]);
+            var ele = $('<li />').append(a_ele);
             target.append(ele);
         }
     }).error(function (){
