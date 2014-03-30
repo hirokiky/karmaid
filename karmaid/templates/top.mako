@@ -15,7 +15,7 @@
 <input id="host" type="hidden" value="${host}" />
 <div class="nav">
     <div class="container">
-        <div class="brand"><a href="${request.route_url('top')}">Karmaid</a></div>
+        <div class="brand"><a href="${request.route_url('top')}"></a></div>
         <div class="nav-link"><a href="#ranking">ranking</a></div>
         <div class="nav-link"><a href="#buttongenerator">button</a></div>
         <div class="karmawidget">
