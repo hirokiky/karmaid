@@ -7,7 +7,7 @@
 }
 
 .button {
-    background: -moz-linear-gradient(center top, #FFF, #DEDEDE);
+    background: linear-gradient(#FFF, #DEDEDE);
     border: solid 1px #CCCCCC;
     border-radius: 4px;
     color: #808080;
