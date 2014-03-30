@@ -14,7 +14,7 @@
 <span id="forkongithub"><a href="https://github.com/hirokiky/karmaid" target="_blank">Edit me on GitHub</a></span>
 <input id="api-karma" type="hidden" value="${request.route_url('api_karma')}" />
 <input id="api-ranking" type="hidden" value="${request.route_url('api_ranking')}" />
-<input id="host" type="hidden" value="${request.host}" />
+<input id="host" type="hidden" value="${request.host_url}" />
 <div class="nav">
     <div class="container">
         <div class="brand"><a href="${request.route_url('top')}"></a></div>
