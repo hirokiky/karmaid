@@ -46,7 +46,9 @@ function get_karma(api_url){
         url: api_url,
         data: {stuff: get_stuff()}
     }).done(function (msg){
-        set_karma(msg['karma']);
+        if ($('.value').text() != msg['karma'].toString()){
+            flush_karma(function () {set_karma(msg['karma'])});
+        }
     }).error(error_karma);
 }
 
@@ -67,11 +69,11 @@ function get_host() {
 
 function refresh_karma (){
     if (karma_manually_updated === false) {
-        flush_karma(function () {get_karma(get_karma_api_url())});
+        get_karma(get_karma_api_url());
     } else {
         karma_manually_updated = false;
     }
-    setTimeout("refresh_karma()", 5000);
+    setTimeout("refresh_karma()", 3000);
 }
 
 
