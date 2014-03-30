@@ -73,7 +73,7 @@ function refresh_karma (){
     } else {
         karma_manually_updated = false;
     }
-    setTimeout("refresh_karma()", 3000);
+    setTimeout("refresh_karma()", 5000);
 }
 
 
