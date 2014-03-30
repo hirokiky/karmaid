@@ -136,9 +136,9 @@ body {
 
 .ranking {
     min-width: 960px;
-    height: 580px;
+    max-height: 580px;
     padding-top: 20px;
-    padding-bottom: 80px;
+    padding-bottom: 40px;
     background-color: #f9f9f9;
 }
 
