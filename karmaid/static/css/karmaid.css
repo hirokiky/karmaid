@@ -9,14 +9,14 @@ body {
 
 .container {
     text-align: left;
-    width: 860px;
+    width: 960px;
     margin: 0 auto;
     padding: 0;
 }
 
 .nav {
     width: 100%;
-    min-width: 860px;
+    min-width: 960px;
     padding-top: 10px;
     height: 50px;
     background-color: rgb(255, 255, 255);
@@ -63,13 +63,14 @@ body {
     margin: 0;
     height: 320px;
     width: 100%;
-    min-width: 860px;
+    min-width: 960px;
     background-color: rgba(255, 119, 66, 0.31);
     padding-top: 80px;
     color: #ffffff;
 }
 
 .hero-text {
+    margin-left: 80px;
     text-shadow: 0 3px 2px #5d2e18;
     float: left;
 }
@@ -94,7 +95,7 @@ body {
 }
 
 .hero-input {
-    margin-left: 520px;
+    margin-left: 560px;
 }
 
 .stuff-input {
@@ -134,7 +135,7 @@ body {
 
 
 .ranking {
-    min-width: 860px;
+    min-width: 960px;
     height: 580px;
     padding-top: 20px;
     padding-bottom: 80px;
@@ -192,6 +193,8 @@ h1 {
     font-size: 24px;
     padding-left: 0;
     line-height: 1.5;
+    width: 380px;
+    margin-left: 80px;
 }
 
 .ranking ul li {
@@ -204,7 +207,7 @@ ul.best {
     color: #1BA466;
     text-align: right;
     float: left;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 ul.best a {
@@ -216,7 +219,7 @@ ul.worst {
     color: #E06A3B;
     text-align: left;
     float: left;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 ul.worst a {
@@ -259,7 +262,7 @@ ul.worst a {
 }
 
 footer {
-    min-width: 860px;
+    min-width: 960px;
     padding-top: 18px;
     height: 100px;
     background-color: rgba(255, 119, 66, 0.31);
