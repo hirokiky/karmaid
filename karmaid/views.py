@@ -25,7 +25,7 @@ def ip_limitation(view_callable):
 
 @view_config(route_name='top', renderer='top.mako')
 def top(request):
-    return {'host': request.registry.settings['karmaid.host']}
+    return {}
 
 
 @view_config(route_name='button', renderer='button1.mako')
@@ -94,4 +94,4 @@ def api_best(request):
 @view_config(route_name='js_widget', renderer='widget.js.mako')
 def js_widget(request):
     request.response.content_type = 'application/javascript'
-    return {'host': request.registry.settings['karmaid.host']}
+    return {}

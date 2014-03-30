@@ -14,7 +14,7 @@
 <span id="forkongithub"><a href="https://github.com/hirokiky/karmaid" target="_blank">Edit me on GitHub</a></span>
 <input id="api-karma" type="hidden" value="${request.route_url('api_karma')}" />
 <input id="api-ranking" type="hidden" value="${request.route_url('api_ranking')}" />
-<input id="host" type="hidden" value="${host}" />
+<input id="host" type="hidden" value="${request.host}" />
 <div class="nav">
     <div class="container">
         <div class="brand"><a href="${request.route_url('top')}"></a></div>
@@ -22,7 +22,7 @@
         <div class="nav-link"><a href="#buttongenerator">button</a></div>
         <div class="karmawidget">
             <script>var karmaid_stuff='karmaid';</script>
-            <script src="${host}/widget.js" type="text/javascript"></script>
+            <script src="${request.route_url('js_widget')}" type="text/javascript"></script>
         </div>
     </div>
 </div>
@@ -73,7 +73,7 @@
                     <p>Enjoy your button. If you like it, copy and paste the code below into your site.</p>
                     <div class="sample-widget">
                         <script>var karmaid_stuff='karmaid';</script>
-                        <script src="${host}/widget.js" type="text/javascript"></script>
+                        <script src="${request.route_url('js_widget')}" type="text/javascript"></script>
                     </div>
                     <textarea cols="30" rows="2"></textarea>
                 </div>

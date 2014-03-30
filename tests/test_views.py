@@ -47,11 +47,8 @@ class TestTop(unittest.TestCase):
         from karmaid.views import top
         return top(*args, **kwargs)
 
-    def setUp(self):
-        testing.setUp(settings={'karmaid.host': 'http://karmaid.org/'})
-
     def test__it(self):
-        self.assertEqual({'host': 'http://karmaid.org/'}, self._callFUT(testing.DummyRequest()))
+        self.assertEqual({}, self._callFUT('request'))
 
 
 @mock.patch('karmaid.views.get_karma', autospec=True, return_value=3)
