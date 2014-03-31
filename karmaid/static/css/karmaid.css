@@ -31,10 +31,10 @@ body {
 
 .brand a {
     display: block;
-    width: 161px;
-    height: 30px;
+    width: 156px;
+    height: 31px;
     background-image: url('../images/karmaid.png');
-    background-size: 161px 30px;
+    background-size: 156px 31px;
 }
 
 .nav .nav-link {
