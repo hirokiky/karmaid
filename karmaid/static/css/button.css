@@ -56,8 +56,8 @@
     min-width: 20px;
     max-width: 40px;
     position: relative;
-    padding: 2px 3px 0 3px;
-    height: 17px;
+    padding: 0 3px 0 3px;
+    height: 19px;
     border: solid 1px #979797;
     border-radius: 3px;
     float: left;
