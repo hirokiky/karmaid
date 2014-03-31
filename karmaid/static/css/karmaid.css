@@ -261,7 +261,7 @@ ul.worst a {
     margin-bottom: 20px;
 }
 
-footer {
+.footer {
     min-width: 960px;
     padding-top: 18px;
     height: 100px;
@@ -272,6 +272,6 @@ footer {
     color: #333333;
 }
 
-footer p {
+.footer p {
     text-align: center;
 }

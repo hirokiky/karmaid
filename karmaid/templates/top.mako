@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -45,7 +46,7 @@
     </div>
 </div>
 <div class="main">
-    <a name="ranking"></a>
+    <a id="ranking"></a>
     <div class="ranking">
         <div class="container">
             <h1><span class="best-font">Best</span> / <span class="worst-font">Worst</span> Karma</h1>
@@ -60,7 +61,7 @@
             <p><button class="ranking-refresh">refresh</button></p>
         </div>
     </div>
-    <a name="buttongenerator"></a>
+    <a id="buttongenerator"></a>
     <div class="buttongenerator">
         <div class="container">
             <div class="generator">
@@ -81,11 +82,11 @@
         </div>
     </div>
 </div>
-<footer>
+<div class="footer">
     <div class="container">
         <p>by <a href="http://hirokiky.org/">Hiroki KIYOHARA</a></p>
         <p>Repository <a href="https://github.com/hirokiky/karmaid">karmaid</a></p>
     </div>
-</footer>
+</div>
 </body>
 </htmL>
