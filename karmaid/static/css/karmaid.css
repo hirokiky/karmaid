@@ -38,7 +38,7 @@ body {
 }
 
 .nav .nav-link {
-    padding-top: 8px;
+    padding-top: 10px;
     margin-left: 24px;
     float: left;
 }
@@ -90,7 +90,7 @@ body {
 }
 
 .subheading {
-    font-size: 25px;
+    font-size: 24px;
     clear: both;
 }
 
@@ -144,7 +144,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 42px;
+    font-size: 40px;
     color: #333;
 }
 
@@ -242,7 +242,11 @@ ul.worst a {
 }
 
 .buttongenerator h1 {
-    margin-bottom: 84px;
+    margin-bottom: 64px;
+}
+
+.buttongenerator h3 {
+    font-size: 24px;
 }
 
 .generator-input {
