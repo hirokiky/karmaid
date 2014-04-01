@@ -15,7 +15,7 @@ class APIAccessReachedLimitation(Exception):
 def ip_limitation(view_callable):
     @wraps(view_callable)
     def wrapped(context, request, *args, **kwargs):
-        if not count_ip(request.remote_addr,
+        if not count_ip(request.client_addr,
                         int(request.registry.settings['iplimitation.max_count']),
                         int(request.registry.settings['iplimitation.expire_time'])):
             raise APIAccessReachedLimitation
