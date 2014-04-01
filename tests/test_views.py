@@ -26,7 +26,7 @@ class TestIPLimitation(unittest.TestCase):
         from karmaid.views import APIAccessReachedLimitation
         target = self._makeOne(lambda: None)
         request = testing.DummyRequest()
-        request.remote_addr = 'dummy ipaddr'
+        request.client_addr = 'dummy ipaddr'
         self.assertRaises(APIAccessReachedLimitation, target, 'dummy context', request)
         m.assert_called_with('dummy ipaddr', 300, 3600)
 
@@ -35,7 +35,7 @@ class TestIPLimitation(unittest.TestCase):
         wrapped_view = mock.Mock(spec=['__call__'], return_value='dummy response')
         target = self._makeOne(wrapped_view)
         request = testing.DummyRequest()
-        request.remote_addr = 'dummy ipaddr'
+        request.client_addr = 'dummy ipaddr'
         actual = target('dummy context', request)
         self.assertEqual('dummy response', actual)
         m.assert_called_with('dummy ipaddr', 300, 3600)
