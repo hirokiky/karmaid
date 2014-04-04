@@ -6,6 +6,8 @@
     <title>Karmaid buttons</title>
     <link type="text/css" rel="stylesheet"  href="${request.static_url('karmaid:static/css/button.css')}" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/app/utils.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/button.js')}"></script>
 </head>
 <body class="button-body">

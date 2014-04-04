@@ -1,55 +1,38 @@
-function humanize_num(karma){
-    var digits = karma.toString().length
-    if (digits < 4){
-        return karma.toString();
-    } else if (digits >= 4 && digits < 7){
-        return (Math.round(karma / 100) / 10).toString() + 'k'
-    } else if (digits >= 7 && digits < 10){
-        return (Math.round(karma / 100000) / 10).toString() + 'm'
-    } else {
-        return (Math.round(karma / 100000000) / 10).toString() + 'g'
-    }
-}
-
-function set_karma (karma){
-    $('.karma-value').text(humanize_num(karma));
-}
-
-function error_karma (){
-    $('.karma-value').text('Error');
-}
-
-function flush_karma (some_action){
-    var flush_speed = 200;
-    $('.karma-value').fadeOut(flush_speed, some_action).fadeIn(flush_speed);
-}
-
-function ajax_action (api_url, stuff, action){
-    $.ajax({
-        type: "POST",
-        url: api_url,
-        data: {stuff: stuff,
-               action: action}
-    }).done(function (msg){
-        set_karma(msg['karma']);
-    }).error(error_karma);
-}
 $(function(){
-    var api_url = $('#api-url').attr('value');
+    var api = import_api({url_api_karma: $('#api-url').attr('value')});
+    var utils = import_utils();
     var stuff = $('.stuff').text();
 
-    $.ajax({
-        type: "GET",
-        url: api_url,
-        data: {stuff: stuff}
-    }).done(function (msg){
-        set_karma(msg['karma']);
-    }).error(error_karma);
+    function set_karma (karma){
+        $('.karma-value').text(karma);
+    }
+
+    api.get_karma(
+        stuff,
+        function(msg){set_karma(utils.humanize_num(msg.karma))},
+        function(){set_karma('Error')}
+    );
 
     $('.inc').click(function (){
-        flush_karma(function (){ajax_action(api_url, stuff, 'inc')});
+        utils.flush_element($('.karma-value'), 200, function(){
+            api.inc_karma(
+                stuff,
+                function(msg){
+                    set_karma(utils.humanize_num(msg.karma));
+                },
+                function(){return 'Error'}
+            )
+        })
     });
     $('.dec').click(function (){
-        flush_karma(function (){ajax_action(api_url, stuff, 'dec')});
+        utils.flush_element($('.karma-value'), 200, function(){
+            api.dec_karma(
+                stuff,
+                function(msg){
+                    set_karma(utils.humanize_num(msg.karma));
+                },
+                function(){return 'Error'}
+            )
+        })
     });
 });
