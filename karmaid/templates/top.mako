@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="keywords" content="karmaid, karmaid.org, karma, stuff, submit, vote" />
     <title>Karmaid: Karma for everything</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.min.js')}"></script>
     <link rel="shortcut icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
     <script src="${request.static_url('karmaid:static/js/karmaid.js')}" type="text/javascript"></script>
