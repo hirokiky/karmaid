@@ -3,36 +3,34 @@ $(function(){
     var utils = import_utils();
     var stuff = $('.stuff').text();
 
-    function set_karma (karma){
-        $('.karma-value').text(karma);
-    }
+    var KarmaButtonViewModel = function(){
+        var self = this;
+        self.karma = ko.observable();
 
-    api.get_karma(
-        stuff,
-        function(msg){set_karma(utils.humanize_num(msg.karma))},
-        function(){set_karma('Error')}
-    );
+        self.flushValue = function(callback){
+            utils.flush_element($('.karma-value'), 200, callback);
+        };
 
-    $('.inc').click(function (){
-        utils.flush_element($('.karma-value'), 200, function(){
-            api.inc_karma(
-                stuff,
-                function(msg){
-                    set_karma(utils.humanize_num(msg.karma));
-                },
-                function(){return 'Error'}
-            )
-        })
-    });
-    $('.dec').click(function (){
-        utils.flush_element($('.karma-value'), 200, function(){
-            api.dec_karma(
-                stuff,
-                function(msg){
-                    set_karma(utils.humanize_num(msg.karma));
-                },
-                function(){return 'Error'}
-            )
-        })
-    });
+        self.incClick = function(){
+            self.flushValue(function(){
+                api.inc_karma(stuff,
+                    function(msg){self.karma(utils.humanize_num(msg.karma))},
+                    function(){self.karma('Error')})
+            })
+        };
+        self.decClick = function(){
+            self.flushValue(function(){
+                api.dec_karma(stuff,
+                    function(msg){self.karma(utils.humanize_num(msg.karma))},
+                    function(){self.karma('Error')})
+            })
+        };
+        api.get_karma(
+            stuff,
+            function(msg){self.karma(utils.humanize_num(msg.karma))},
+            function(){self.karma('Error')}
+        );
+
+    };
+    ko.applyBindings(new KarmaButtonViewModel());
 });
