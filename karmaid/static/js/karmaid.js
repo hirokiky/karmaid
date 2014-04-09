@@ -1,123 +1,104 @@
-var karma_manually_updated = false;
+$(function(){
+    var api = import_api(
+        {url_api_karma: $('#api-karma').attr('value'),
+         url_api_ranking: $('#api-ranking').attr('value')}
+    );
+    var utils = import_utils();
+    var host = $('#host').attr('value');
 
-function init_stuff_input (){
-    var query = window.location.search.substring(1);
-    var pos = query.indexOf('=');
+    ko.extenders.flushValue = function(target, option){
+        return ko.computed({
+            read: target,
+            write: function(value){
+                var current = target();
+                if (!option.flushOnlyChanged || current !== value){
+                    utils.flush_element($(option.target), option.speed, function(){target(value)});
+                }
+            }
+        });
+    };
 
-    var stuff = 'karmaid';
-    if (query.substring(0, pos) == 'stuff') {
-        stuff = query.substring(pos+1)
+    var TopViewModel = function(){
+        var self = this;
+
+        /* Karma */
+        self.karma = ko.observable()
+            .extend({flushValue: {target: '.value', speed: 200, flushOnlyChanged: true}});
+        self.stuff = ko.observable();
+        self.karma_manually_updated = false;
+
+        self.incClick = function(){
+            api.inc_karma(self.stuff(),
+                function(msg){self.karma(utils.humanize_num(msg.karma))},
+                function(){self.karma('Error')
+                });
+            self.karma_manually_updated = true;
+        };
+
+        self.decClick = function(){
+            api.dec_karma(self.stuff(),
+                function(msg){self.karma(utils.humanize_num(msg.karma))},
+                function(){self.karma('Error')
+                });
+            self.karma_manually_updated = true;
+        };
+
+        self.refreshKarma = function(){
+            api.get_karma(self.stuff(),
+                function(msg){
+                    self.karma(msg.karma);
+                },
+                function(){self.karma('Error')})
+        };
+
+        self.stuff.subscribe(function(){self.refreshKarma()});
+
+        (function init_stuff(){
+            var query = window.location.search.substring(1);
+            var pos = query.indexOf('=');
+
+            var stuff = 'karmaid';
+            if (query.substring(0, pos) == 'stuff') {
+                stuff = query.substring(pos+1)
+            }
+            self.stuff(stuff);
+        })();
+
+        self.refreshKarmaPeriodically = function(){
+            if (self.karma_manually_updated == false){
+                self.refreshKarma();
+            } else {
+                self.karma_manually_updated = false;
+            }
+        };
+        setInterval(self.refreshKarmaPeriodically, 5000);
+
+        /* Ranking */
+
+        self.bests = ko.observableArray()
+            .extend({flushValue: {target: '.best', speed: 200, flushOnlyChanged: false}});
+        self.worsts = ko.observableArray()
+            .extend({flushValue: {target: '.worst', speed: 200, flushOnlyChanged: false}});
+
+        self.refreshRanking = function(){
+            api.get_ranking_asc(function(msg){self.bests(msg.stuffs)},
+                function(){self.bests(['Error'])});
+            api.get_ranking_desc(function(msg){self.worsts(msg.stuffs)},
+                function(){self.worsts(['Error'])});
+        };
+        self.refreshRanking();
+    };
+
+    ko.applyBindings(new TopViewModel());
+
+
+    /* Button generator, maybe this should be written on Knockout.js too... */
+
+    function create_widget_script(stuff){
+        var stuff_ele = $('<script />');
+        stuff_ele.text('var karmaid_stuff=\"' + stuff + '\";');
+        return '<script>var karmaid_stuff=\"' + stuff + '\";</script><script src="' + host + '/widget.js"></script>';
     }
-    $('.stuff-input').val(stuff);
-}
-
-function flush_karma (some_action){
-    var flush_speed = 200;
-    $('.value').fadeOut(flush_speed, some_action).fadeIn(flush_speed);
-}
-
-function set_karma (karma){
-    $('.value').text(karma);
-}
-
-function error_karma (){
-    $('.value').text('Error');
-}
-
-function get_stuff (){
-    return $('.stuff-input').val()
-}
-
-function action_karma (api_url, action){
-    $.ajax({
-        type: "POST",
-        url: api_url,
-        data: {stuff: get_stuff(),
-            action: action}
-    }).done(function (msg){
-        flush_karma(function (){set_karma(msg['karma'])});
-    }).error(error_karma);
-    karma_manually_updated = true;
-}
-
-function get_karma(api_url){
-    $.ajax({
-        type: "GET",
-        url: api_url,
-        data: {stuff: get_stuff()}
-    }).done(function (msg){
-        if ($('.value').text() != msg['karma'].toString()){
-            flush_karma(function () {set_karma(msg['karma'])});
-        }
-    }).error(error_karma);
-}
-
-function get_karma_api_url() {
-    return $('#api-karma').attr('value');
-}
-
-
-function get_ranking_api_url() {
-    return $('#api-ranking').attr('value');
-}
-
-
-function get_host() {
-    return $('#host').attr('value');
-}
-
-
-function refresh_karma (){
-    if (karma_manually_updated === false) {
-        get_karma(get_karma_api_url());
-    } else {
-        karma_manually_updated = false;
-    }
-    setTimeout("refresh_karma()", 5000);
-}
-
-
-function refresh_ranking(target, request_param){
-    $.ajax({
-        type: "GET",
-        url: get_ranking_api_url(),
-        data: request_param
-    }).done(function (msg){
-        var bests = msg['stuffs'];
-        target.empty();
-        for (var i = 0; i < bests.length; i++){
-            var a_ele = $('<a />').attr({href: '?stuff=' + bests[i]}).text(bests[i]);
-            var ele = $('<li />').append(a_ele);
-            target.append(ele);
-        }
-    }).error(function (){
-        $('.bests').text('Some error happened')
-    });
-}
-
-
-function create_widget_script(stuff){
-    var stuff_ele = $('<script />');
-    stuff_ele.text('var karmaid_stuff=\"' + stuff + '\";');
-    return '<script>var karmaid_stuff=\"' + stuff + '\";</script><script src="' + get_host() + '/widget.js"></script>';
-}
-
-
-$(function (){
-    var api_url = get_karma_api_url();
-    init_stuff_input();
-    refresh_karma();
-    refresh_ranking($('.best'), {});
-    refresh_ranking($('.worst'), {desc: ''});
-
-    $('.inc').click(function (){
-        action_karma(api_url, 'inc');
-    });
-    $('.dec').click(function (){
-        action_karma(api_url, 'dec');
-    });
-    $('.stuff-input').change(function (){get_karma(api_url)});
-
     $('.generator-input input').change(function (){
         var generator_result_ele = $('.generator-result textarea');
         var stuff = $(this).val();
@@ -131,11 +112,5 @@ $(function (){
     $('.generator-result textarea').focus(function (){
         $(this).select();
     });
-    $('.ranking-refresh').click(function (){
-        var flush_speed = 200;
-        $('.ranks').fadeOut(flush_speed, function(){
-            refresh_ranking($('.best'), {});
-            refresh_ranking($('.worst'), {desc: ''});
-        }).fadeIn(flush_speed);
-    })
+
 });

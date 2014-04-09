@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
     <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.min.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.min.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/app/utils.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/karmaid.js')}" type="text/javascript"></script>
     <link href="${request.static_url('karmaid:static/css/karmaid.css')}" type="text/css" rel="stylesheet" />
     <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:2px 30px;font-size:1rem;line-height:2rem;position:relative;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:500px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:2px 2px 5px rgba(0,0,0,0.8);}}</style>
@@ -31,7 +34,7 @@
     <div class="container">
         <div class="hero-text">
             <div class="karma">
-                <span class="karma-value"><span class="value"></span><sub class="karma-suffix">karma</sub></span>
+                <span class="karma-value"><span class="value" data-bind="text: karma"></span><sub class="karma-suffix">karma</sub></span>
             </div>
             <span class="subheading">
                 Karma for everything.<br />
@@ -39,9 +42,9 @@
             </span>
         </div>
         <div class="hero-input">
-            <p><input class="stuff-input" type="text" value="karmaid" placeholder="Put the target stuff" /></p>
-            <button class="action inc">++</button>
-            <button class="action dec">--</button>
+            <p><input class="stuff-input" data-bind="value: stuff" type="text" placeholder="Put the target stuff" /></p>
+            <button class="action inc" data-bind="click: incClick">++</button>
+            <button class="action dec" data-bind="click: decClick">--</button>
         </div>
     </div>
 </div>
@@ -52,13 +55,15 @@
             <h1><span class="best-font">Best</span> / <span class="worst-font">Worst</span> Karma</h1>
             <p>The best and worst 10 karma for the totally.</p>
             <div class="ranks">
-                <ul class="best">
+                <ul class="best" data-bind="foreach: bests">
+                    <li><a data-bind="text: $data, attr: {href:'?stuff='+$data}"></a></li>
                 </ul>
-                <ul class="worst">
+                <ul class="worst" data-bind="foreach: worsts">
+                    <li><a data-bind="text: $data, attr: {href:'?stuff='+escape($data)}"></a></li>
                 </ul>
             </div>
             <div class="clearboth"></div>
-            <p><button class="ranking-refresh">refresh</button></p>
+            <p><button class="ranking-refresh" data-bind="click: refreshRanking">refresh</button></p>
         </div>
     </div>
     <a id="buttongenerator"></a>

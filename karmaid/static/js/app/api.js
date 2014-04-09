@@ -30,8 +30,8 @@ var import_api = function (settings){
         }).done(done_callback).error(error_callback);
     };
 
-    var get_ranking_asc = function(error_callback){return get_ranking({}, error_callback)};
-    var get_ranking_desc= function(error_callback){return get_ranking({desc: ''}, error_callback)};
+    var get_ranking_asc = function(d, e){return get_ranking({}, d, e)};
+    var get_ranking_desc= function(d, e){return get_ranking({desc: ''}, d, e)};
 
     return {
         inc_karma: inc_karma,
