@@ -258,6 +258,7 @@ ul.worst a {
 
 .generator-result textarea {
     overflow: hidden;
+    resize: vertical;
 }
 
 .sample-widget {
