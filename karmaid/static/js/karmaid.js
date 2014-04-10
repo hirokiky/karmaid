@@ -94,10 +94,10 @@ $(function(){
 
     /* Button generator, maybe this should be written on Knockout.js too... */
 
+    var widget_template = _.template('<script>var karmaid_stuff=\"<%- stuff %>";</script>' +
+                                     '<script src="<%- host %>/widget.js"></script>');
     function create_widget_script(stuff){
-        var stuff_ele = $('<script />');
-        stuff_ele.text('var karmaid_stuff=\"' + stuff + '\";');
-        return '<script>var karmaid_stuff=\"' + stuff + '\";</script><script src="' + host + '/widget.js"></script>';
+        return widget_template({stuff: stuff, host: host});
     }
     $('.generator-input input').change(function (){
         var generator_result_ele = $('.generator-result textarea');
