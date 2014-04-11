@@ -6,18 +6,6 @@ $(function(){
     var utils = import_utils();
     var host = $('#host').attr('value');
 
-    ko.extenders.flushValue = function(target, option){
-        return ko.computed({
-            read: target,
-            write: function(value){
-                var current = target();
-                if (!option.flushOnlyChanged || current !== value){
-                    utils.flush_element($(option.target), option.speed, function(){target(value)});
-                }
-            }
-        });
-    };
-
     var TopViewModel = function(){
         var self = this;
 

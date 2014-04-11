@@ -11,6 +11,7 @@
     <script src="${request.static_url('karmaid:static/js/lib/underscore-1.6.0.min.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/utils.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/app/ko_flushvalue.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/karmaid.js')}" type="text/javascript"></script>
     <link href="${request.static_url('karmaid:static/css/karmaid.css')}" type="text/css" rel="stylesheet" />
     <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:2px 30px;font-size:1rem;line-height:2rem;position:relative;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:500px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:2px 2px 5px rgba(0,0,0,0.8);}}</style>

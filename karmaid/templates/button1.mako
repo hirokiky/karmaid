@@ -9,6 +9,7 @@
     <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.min.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/utils.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/app/ko_flushvalue.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/button.js')}"></script>
 </head>
 <body class="button-body">
