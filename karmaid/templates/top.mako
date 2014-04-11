@@ -56,10 +56,14 @@
             <h1><span class="best-font">Best</span> / <span class="worst-font">Worst</span> Karma</h1>
             <p>The best and worst 10 karma for the totally.</p>
             <div class="ranks">
-                <ul class="best" data-bind="foreach: bests">
+                <ul class="best" data-bind="template: {foreach: bests,
+                                                       beforeMove: saveRankPosition,
+                                                       afterMove: moveRank}">
                     <li><a data-bind="text: $data, attr: {href:'?stuff='+$data}"></a></li>
                 </ul>
-                <ul class="worst" data-bind="foreach: worsts">
+                <ul class="worst" data-bind="template: {foreach: worsts,
+                                                        beforeMove: saveRankPosition,
+                                                        afterMove: moveRank}">
                     <li><a data-bind="text: $data, attr: {href:'?stuff='+escape($data)}"></a></li>
                 </ul>
             </div>

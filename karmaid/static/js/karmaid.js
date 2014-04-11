@@ -1,7 +1,7 @@
 $(function(){
     var api = import_api(
         {url_api_karma: $('#api-karma').attr('value'),
-         url_api_ranking: $('#api-ranking').attr('value')}
+            url_api_ranking: $('#api-ranking').attr('value')}
     );
     var host = $('#host').attr('value');
 
@@ -62,16 +62,40 @@ $(function(){
 
         /* Ranking */
 
-        self.bests = ko.observableArray()
-            .extend({flushValue: {target: '.best', speed: 200, flushOnlyChanged: false}});
-        self.worsts = ko.observableArray()
-            .extend({flushValue: {target: '.worst', speed: 200, flushOnlyChanged: false}});
+        self.bests = ko.observableArray();
+        self.worsts = ko.observableArray();
 
         self.refreshRanking = function(){
             api.get_ranking_asc(function(msg){self.bests(msg.stuffs)},
                 function(){self.bests(['Error'])});
             api.get_ranking_desc(function(msg){self.worsts(msg.stuffs)},
                 function(){self.worsts(['Error'])});
+        };
+
+        self.saveRankPosition = function(elem) {
+            if (elem.nodeType == 1) {
+                elem.saveOffsetTop = elem.offsetTop;
+            }
+        };
+
+        self.moveRank = function(elem) {
+            if (elem.nodeType == 1) {
+                if (elem.offsetTop !== elem.saveOffsetTop) {
+                    var tempElement = elem.cloneNode(true);
+                    $(elem).css({visibility: 'hidden'});
+                    $(tempElement).css({
+                        position: "absolute",
+                        width: window.getComputedStyle(elem).width
+                    });
+                    elem.parentNode.appendChild(tempElement);
+                    $(tempElement)
+                        .css({top: elem.saveOffsetTop})
+                        .animate({top: elem.offsetTop}, function() {
+                            $(elem).css({visibility: 'visible'});
+                            elem.parentNode.removeChild(tempElement);
+                        });
+                }
+            }
         };
         self.refreshRanking();
     };
@@ -82,7 +106,7 @@ $(function(){
     /* Button generator, maybe this should be written on Knockout.js too... */
 
     var widget_template = _.template('<script>var karmaid_stuff=\"<%- stuff %>";</script>' +
-                                     '<script src="<%- host %>/widget.js"></script>');
+        '<script src="<%- host %>/widget.js"></script>');
     function create_widget_script(stuff){
         return widget_template({stuff: stuff, host: host});
     }
