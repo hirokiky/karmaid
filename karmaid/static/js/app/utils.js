@@ -12,10 +12,6 @@ function import_utils(){
         }
     };
 
-    var flush_element = function (target_element, flush_speed, callback){
-        target_element.fadeOut(flush_speed, callback).fadeIn(flush_speed);
-    };
-
     return {
         humanize_num: humanize_num,
         flush_element: flush_element

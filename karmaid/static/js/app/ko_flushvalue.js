@@ -10,16 +10,15 @@
  */
 
 
-var utils = import_utils();
-
-
 ko.extenders.flushValue = function(target, option){
     return ko.computed({
         read: target,
         write: function(value){
             var current = target();
             if (!option.flushOnlyChanged || current !== value){
-                utils.flush_element($(option.target), option.speed, function(){target(value)});
+                $(option.target)
+                    .fadeOut(option.speed, function(){target(value)})
+                    .fadeIn(option.speed);
             }
         }
     });

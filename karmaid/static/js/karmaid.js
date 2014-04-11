@@ -3,7 +3,6 @@ $(function(){
         {url_api_karma: $('#api-karma').attr('value'),
          url_api_ranking: $('#api-ranking').attr('value')}
     );
-    var utils = import_utils();
     var host = $('#host').attr('value');
 
     var TopViewModel = function(){
@@ -17,7 +16,7 @@ $(function(){
 
         self.incClick = function(){
             api.inc_karma(self.stuff(),
-                function(msg){self.karma(utils.humanize_num(msg.karma))},
+                function(msg){self.karma(msg.karma)},
                 function(){self.karma('Error')
                 });
             self.karma_manually_updated = true;
@@ -25,7 +24,7 @@ $(function(){
 
         self.decClick = function(){
             api.dec_karma(self.stuff(),
-                function(msg){self.karma(utils.humanize_num(msg.karma))},
+                function(msg){self.karma(msg.karma)},
                 function(){self.karma('Error')
                 });
             self.karma_manually_updated = true;
