@@ -13,7 +13,6 @@ function import_utils(){
     };
 
     return {
-        humanize_num: humanize_num,
-        flush_element: flush_element
+        humanize_num: humanize_num
     }
 }
