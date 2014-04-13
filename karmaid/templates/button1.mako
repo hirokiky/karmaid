@@ -1,3 +1,9 @@
+<%!
+    import json
+
+    def to_json(d):
+        return json.dumps(d)
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +11,17 @@
     <meta name="keywords" content="karmaid, karmaid.org, karma, stuff, submit, vote" />
     <title>Karmaid buttons</title>
     <link type="text/css" rel="stylesheet"  href="${request.static_url('karmaid:static/css/button.css')}" />
-    <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.min.js')}"></script>
-    <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.min.js')}"></script>
+    <script>
+        var config = ${to_json({'url_api_karma': request.route_url('api_karma')})|n};
+    </script>
+    <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/utils.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/ko_flushvalue.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/button.js')}"></script>
 </head>
 <body class="button-body">
-<input id="api-url" type="hidden" value="${request.route_url('api_karma')}" />
 <div class="wrapper">
     <div class="button">
         <div class="body-wrapper">

@@ -1,3 +1,9 @@
+<%!
+    import json
+
+    def to_json(d):
+        return json.dumps(d)
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +12,14 @@
     <title>Karmaid: Karma for everything</title>
     <link rel="shortcut icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="${request.static_url('karmaid:static/images/favicon.ico')}" type="image/vnd.microsoft.icon" />
-    <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.min.js')}"></script>
-    <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.min.js')}"></script>
-    <script src="${request.static_url('karmaid:static/js/lib/underscore-1.6.0.min.js')}"></script>
+    <script>
+        var config = ${to_json({'url_api_karma': request.route_url('api_karma'),
+                                'url_api_ranking': request.route_url('api_ranking'),
+                                'host': request.host_url})|n};
+    </script>
+    <script src="${request.static_url('karmaid:static/js/lib/jquery-2.1.0.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/lib/knockout-3.1.0.js')}"></script>
+    <script src="${request.static_url('karmaid:static/js/lib/underscore-1.6.0.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/api.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/app/ko_flushvalue.js')}"></script>
     <script src="${request.static_url('karmaid:static/js/karmaid.js')}" type="text/javascript"></script>
@@ -17,9 +28,6 @@
 </head>
 <body>
 <span id="forkongithub"><a href="https://github.com/hirokiky/karmaid" target="_blank">Edit me on GitHub</a></span>
-<input id="api-karma" type="hidden" value="${request.route_url('api_karma')}" />
-<input id="api-ranking" type="hidden" value="${request.route_url('api_ranking')}" />
-<input id="host" type="hidden" value="${request.host_url}" />
 <div class="nav">
     <div class="container">
         <div class="brand"><a href="${request.route_url('top')}"></a></div>
