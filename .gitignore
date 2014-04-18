@@ -10,3 +10,6 @@ build
 .idea
 htmlcov/
 .tox/
+karmaid/static/.webassets-cache/
+karmaid/static/js/*.js
+karmaid/static/js/app/*.js

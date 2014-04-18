@@ -1,0 +1,34 @@
+directory: ./karmaid/static
+debug: False
+bundles:
+  js-karmaid:
+    contents:
+      - js/lib/jquery-2.1.0.js
+      - js/lib/knockout-3.1.0.js
+      - js/lib/underscore-1.6.0.js
+      - contents:
+        - js/app/config.d.ts
+        - js/lib/jquery.d.ts
+        - js/lib/knockout.d.ts
+        - js/lib/underscore.d.ts
+        - js/app/api.ts
+        - js/app/ko_flushvalue.ts
+        - js/karmaid.ts
+        filters: typescript
+    filters: jsmin
+    output: js/karmaid.js
+  js-button:
+    contents:
+      - js/lib/jquery-2.1.0.js
+      - js/lib/knockout-3.1.0.js
+      - contents:
+        - js/app/config.d.ts
+        - js/lib/jquery.d.ts
+        - js/lib/knockout.d.ts
+        - js/app/api.ts
+        - js/app/utils.ts
+        - js/app/ko_flushvalue.ts
+        - js/button.ts
+        filters: typescript
+    filters: jsmin
+    output: js/button.js

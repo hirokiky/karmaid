@@ -16,6 +16,9 @@ setup(
         'pyramid_debugtoolbar',
         'waitress',
         'redis==2.9.1',
+        'webassets==0.9',
+        'PyYAML==3.11',
+        'jsmin==2.0.9',
     ],
     entry_points="""\
     [paste.app_factory]
